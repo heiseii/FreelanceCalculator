@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tarifas para Freelancers Argentina 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen">
+    
+    <!-- Header Mejorado -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-indigo-900">Calculadora Freelancer</h1>
+                    <p class="text-gray-600 mt-1">Descubrí cuánto deberías cobrar como freelancer en Argentina</p>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <i class="fas fa-calendar-alt text-indigo-600"></i>
+                    <span id="fechaActual"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        
+        <!-- Tabs de Navegación -->
+        <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
+            <div class="flex border-b border-gray-200">
+                <button 
+                    onclick="cambiarTab('calculadora')" 
+                    id="tabCalculadora"
+                    class="flex-1 px-6 py-4 text-center font-semibold transition bg-indigo-600 text-white"
+                >
+                    <i class="fas fa-calculator mr-2"></i>
+                    <span class="hidden sm:inline">Calculadora</span>
+                </button>
+                <button 
+                    onclick="cambiarTab('comparacion')" 
+                    id="tabComparacion"
+                    class="flex-1 px-6 py-4 text-center font-semibold transition text-gray-600 hover:bg-gray-50"
+                >
+                    <i class="fas fa-balance-scale mr-2"></i>
+                    <span class="hidden sm:inline">Comparación</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenido Tab Calculadora -->
+        <div id="contenidoCalculadora">
+            <div class="grid lg:grid-cols-3 gap-6">
+                
+                <!-- Columna Izquierda: Formulario -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-edit text-indigo-600 mr-3"></i>
+                            Ingresá tus datos
+                        </h2>
+                        
+                        <div class="space-y-5">
+                            <!-- Salario Deseado -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 flex items-center">
+                                    <i class="fas fa-money-bill-wave text-green-600 mr-2"></i>
+                                    Salario neto deseado por mes
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-3.5 text-gray-500">$</span>
+                                    <input 
+                                        type="number" 
+                                        id="salarioDeseado" 
+                                        placeholder="800000"
+                                        class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none transition"
+                                        value="800000"
+                                    >
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Lo que querés llevar a tu bolsillo cada mes</p>
+                            </div>
+
+                            <!-- Horas por Mes -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 flex items-center">
+                                    <i class="fas fa-clock text-blue-600 mr-2"></i>
+                                    Horas de trabajo por mes
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="horasMes" 
+                                    placeholder="160"
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none transition"
+                                    value="160"
+                                >
+                                <p class="text-sm text-gray-500 mt-1">Promedio: 160 horas (8 horas diarias x 20 días)</p>
+                            </div>
+
+                            <!-- Gastos Mensuales -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 flex items-center">
+                                    <i class="fas fa-home text-orange-600 mr-2"></i>
+                                    Gastos operativos mensuales
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-3.5 text-gray-500">$</span>
+                                    <input 
+                                        type="number" 
+                                        id="gastosMensuales" 
+                                        placeholder="100000"
+                                        class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none transition"
+                                        value="100000"
+                                    >
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Internet, luz, software, herramientas, contador, etc.</p>
+                            </div>
+
+                            <!-- Monotributo Mejorado -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 flex items-center">
+                                    <i class="fas fa-file-invoice-dollar text-purple-600 mr-2"></i>
+                                    Categoría de Monotributo 2025
+                                </label>
+                                <select 
+                                    id="monotributo" 
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none transition"
+                                >
+                                    <option value="0">No estoy en monotributo</option>
+                                    <option value="11628">Categoría A - $11,628/mes (hasta $6.45M/año)</option>
+                                    <option value="13046" selected>Categoría B - $13,046/mes (hasta $9.45M/año)</option>
+                                    <option value="14890">Categoría C - $14,890/mes (hasta $13.25M/año)</option>
+                                    <option value="17457">Categoría D - $17,457/mes (hasta $16.45M/año)</option>
+                                    <option value="21635">Categoría E - $21,635/mes (hasta $19.35M/año)</option>
+                                    <option value="25813">Categoría F - $25,813/mes (hasta $24.25M/año)</option>
+                                    <option value="33586">Categoría G - $33,586/mes (hasta $29.00M/año)</option>
+                                    <option value="47842">Categoría H - $47,842/mes (hasta $44.00M/año)</option>
+                                    <option value="76066">Categoría I - $76,066/mes (hasta $49.25M/año)</option>
+                                    <option value="94820">Categoría J - $94,820/mes (hasta $56.00M/año)</option>
+                                    <option value="113574">Categoría K - $113,574/mes (hasta $68.75M/año)</option>
+                                </select>
+                                <p class="text-sm text-gray-500 mt-1">
+                                    <i class="fas fa-info-circle text-blue-500"></i>
+                                    Valores actualizados a enero 2025
+                                </p>
+                            </div>
+
+                            <!-- Cotización Dólar Mejorada -->
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 flex items-center">
+                                    <i class="fas fa-dollar-sign text-green-600 mr-2"></i>
+                                    Cotización del Dólar Blue
+                                </label>
+                                <div class="flex gap-2">
+                                    <div class="relative flex-1">
+                                        <span class="absolute left-4 top-3.5 text-gray-500">$</span>
+                                        <input 
+                                            type="number" 
+                                            id="dolarBlue" 
+                                            placeholder="Actualizando..."
+                                            class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none transition"
+                                        >
+                                    </div>
+                                    <button 
+                                        onclick="obtenerDolar()" 
+                                        class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition shadow-md flex items-center"
+                                    >
+                                        <i class="fas fa-sync-alt mr-2"></i>
+                                        <span class="hidden sm:inline">Actualizar</span>
+                                    </button>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1 flex items-center" id="dolarFecha">
+                                    <i class="fas fa-spinner fa-spin mr-2"></i>
+                                    Obteniendo cotización...
+                                </p>
+                            </div>
+
+                            <!-- Botón Calcular Mejorado -->
+                            <button 
+                                onclick="calcular()" 
+                                class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-lg text-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition shadow-lg flex items-center justify-center"
+                            >
+                                <i class="fas fa-calculator mr-2"></i>
+                                Calcular mi Tarifa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Info Rápida -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-xl shadow-md p-6 mb-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-lightbulb mr-2"></i>
+                            Tips Importantes
+                        </h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 flex-shrink-0"></i>
+                                <span>No olvides incluir vacaciones y días sin trabajo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 flex-shrink-0"></i>
+                                <span>Considerá aguinaldo si trabajás con clientes locales</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 flex-shrink-0"></i>
+                                <span>Actualizá tus tarifas con la inflación</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2 flex-shrink-0"></i>
+                                <span>Agregá un 20% extra para imprevistos</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-chart-line text-indigo-600 mr-2"></i>
+                            Gastos Típicos
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Internet:</span>
+                                <span class="font-semibold">$15,000 - $30,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Luz:</span>
+                                <span class="font-semibold">$20,000 - $40,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Software:</span>
+                                <span class="font-semibold">$10,000 - $50,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Contador:</span>
+                                <span class="font-semibold">$20,000 - $40,000</span>
+                            </div>
+                            <div class="flex justify-between pt-2 border-t">
+                                <span class="text-gray-800 font-semibold">Total promedio:</span>
+                                <span class="font-bold text-indigo-600">$100,000/mes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultados -->
+            <div id="resultados" class="hidden mt-6">
+                <!-- Cards de Resultados Principales -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-indigo-500">
+                        <div class="flex justify-center mb-2">
+                            <i class="fas fa-clock text-3xl text-indigo-600"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Tarifa por Hora</p>
+                        <p class="text-2xl md:text-3xl font-bold text-indigo-600" id="tarifaHoraPesos"></p>
+                        <p class="text-sm text-gray-500 mt-1" id="tarifaHoraDolares"></p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-green-500">
+                        <div class="flex justify-center mb-2">
+                            <i class="fas fa-calendar-check text-3xl text-green-600"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Proyecto Mensual</p>
+                        <p class="text-2xl md:text-3xl font-bold text-green-600" id="proyectoMensualPesos"></p>
+                        <p class="text-sm text-gray-500 mt-1" id="proyectoMensualDolares"></p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-purple-500">
+                        <div class="flex justify-center mb-2">
+                            <i class="fas fa-chart-line text-3xl text-purple-600"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Ingreso Anual</p>
+                        <p class="text-2xl md:text-3xl font-bold text-purple-600" id="ingresoAnual"></p>
+                        <p class="text-sm text-gray-500 mt-1" id="ingresoAnualDolares"></p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-orange-500">
+                        <div class="flex justify-center mb-2">
+                            <i class="fas fa-briefcase text-3xl text-orange-600"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Proyecto Semanal</p>
+                        <p class="text-2xl md:text-3xl font-bold text-orange-600" id="proyectoSemanal"></p>
+                        <p class="text-sm text-gray-500 mt-1" id="proyectoSemanalDolares"></p>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <!-- Desglose -->
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-list-ul text-indigo-600 mr-2"></i>
+                            Desglose Mensual
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-wallet text-green-600 mr-2"></i>
+                                    Salario neto deseado
+                                </span>
+                                <span class="font-semibold" id="desgloseSalario"></span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-tools text-orange-600 mr-2"></i>
+                                    Gastos operativos
+                                </span>
+                                <span class="font-semibold" id="desgloseGastos"></span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-file-invoice text-purple-600 mr-2"></i>
+                                    Monotributo
+                                </span>
+                                <span class="font-semibold" id="desgloseMonotributo"></span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-umbrella-beach text-blue-600 mr-2"></i>
+                                    Vacaciones (15 días)
+                                </span>
+                                <span class="font-semibold" id="desgloseVacaciones"></span>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 bg-indigo-50 -mx-6 px-6 py-3 rounded-b-xl">
+                                <span class="text-gray-800 font-bold flex items-center">
+                                    <i class="fas fa-calculator text-indigo-600 mr-2"></i>
+                                    Total a facturar
+                                </span>
+                                <span class="font-bold text-indigo-600 text-lg" id="desgloseTotal"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico -->
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-chart-pie text-indigo-600 mr-2"></i>
+                            Distribución de tu Ingreso
+                        </h3>
+                        <canvas id="graficoDistribucion"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Tab Comparación -->
+        <div id="contenidoComparacion" class="hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-balance-scale text-indigo-600 mr-3"></i>
+                    Freelancer vs Empleado en Relación de Dependencia
+                </h2>
+
+                <!-- Formulario Comparación -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">
+                            Salario bruto como empleado (mensual)
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-3.5 text-gray-500">$</span>
+                            <input 
+                                type="number" 
+                                id="salarioEmpleado" 
+                                placeholder="1000000"
+                                class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none"
+                                value="1000000"
+                            >
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button 
+                            onclick="calcularComparacion()" 
+                            class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                        >
+                            <i class="fas fa-calculator mr-2"></i>
+                            Comparar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resultados Comparación -->
+                <div id="resultadosComparacion" class="hidden">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Columna Empleado -->
+                        <div class="bg-blue-50 rounded-xl p-6 border-2 border-blue-200">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-blue-900 flex items-center">
+                                    <i class="fas fa-building mr-2"></i>
+                                    Empleado
+                                </h3>
+                                <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">Tradicional</span>
+                            </div>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Salario bruto:</span>
+                                    <span class="font-semibold" id="compEmpleadoBruto"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Jubilación (11%):</span>
+                                    <span class="font-semibold text-red-600" id="compEmpleadoJubilacion"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Obra Social (3%):</span>
+                                    <span class="font-semibold text-red-600" id="compEmpleadoObraSocial"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Ley 19032 (3%):</span>
+                                    <span class="font-semibold text-red-600" id="compEmpleadoLey"></span>
+                                </div>
+                                <div class="flex justify-between pt-3 border-t-2 border-blue-300">
+                                    <span class="font-bold text-gray-800">Salario neto:</span>
+                                    <span class="font-bold text-blue-900 text-lg" id="compEmpleadoNeto"></span>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 mt-4">
+                                <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-gift text-green-600 mr-2"></i>
+                                    Beneficios adicionales:
+                                </h4>
+                                <ul class="text-sm space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-600 mr-2 mt-0.5"></i>
+                                        <span><strong>Aguinaldo:</strong> <span id="compEmpleadoAguinaldo"></span>/año</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-600 mr-2 mt-0.5"></i>
+                                        <span><strong>Vacaciones:</strong> 14-35 días pagos según antigüedad</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-600 mr-2 mt-0.5"></i>
+                                        <span><strong>Obra Social:</strong> Incluida sin costo adicional</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-600 mr-2 mt-0.5"></i>
+                                        <span><strong>Aportes jubilatorios:</strong> Automáticos</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-600 mr-2 mt-0.5"></i>
+                                        <span><strong>Estabilidad:</strong> Ingreso mensual garantizado</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-blue-100 rounded-lg p-4 mt-4">
+                                <p class="font-bold text-blue-900">Total anual real:</p>
+                                <p class="text-2xl font-bold text-blue-600" id="compEmpleadoTotalAnual"></p>
+                            </div>
+                        </div>
+
+                        <!-- Columna Freelancer -->
+                        <div class="bg-purple-50 rounded-xl p-6 border-2 border-purple-200">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-purple-900 flex items-center">
+                                    <i class="fas fa-laptop mr-2"></i>
+                                    Freelancer
+                                </h3>
+                                <span class="px-3 py-1 bg-purple-600 text-white text-sm rounded-full">Independiente</span>
+                            </div>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Ingreso bruto:</span>
+                                    <span class="font-semibold" id="compFreelancerBruto"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Monotributo:</span>
+                                    <span class="font-semibold text-red-600" id="compFreelancerMonotributo"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Gastos operativos:</span>
+                                    <span class="font-semibold text-red-600" id="compFreelancerGastos"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Vacaciones (ahorro):</span>
+                                    <span class="font-semibold text-red-600" id="compFreelancerVacaciones"></span>
+                                </div>
+                                <div class="flex justify-between pt-3 border-t-2 border-purple-300">
+                                    <span class="font-bold text-gray-800">Ingreso neto:</span>
+                                    <span class="font-bold text-purple-900 text-lg" id="compFreelancerNeto"></span>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 mt-4">
+                                <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-star text-yellow-500 mr-2"></i>
+                                    Ventajas:
+                                </h4>
+                                <ul class="text-sm space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-600 mr-2 mt-0.5"></i>
+                                        <span><strong>Flexibilidad:</strong> Horarios y lugar de trabajo propios</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-600 mr-2 mt-0.5"></i>
+                                        <span><strong>Clientes múltiples:</strong> Diversificación de ingresos</span>
+                                    </li>

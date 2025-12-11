@@ -123,7 +123,8 @@ function calcular() {
     }
 
     // Cálculos
-    const vacaciones = salarioDeseado / 12; // 1 mes de vacaciones al año
+    const incluirVacaciones = document.getElementById('incluirVacaciones').checked;
+    const vacaciones = incluirVacaciones ? salarioDeseado / 12 : 0;
     const totalMensual = salarioDeseado + gastosMensuales + monotributo + vacaciones;
     
     const tarifaHoraPesos = totalMensual / horasMes;
@@ -264,7 +265,7 @@ function calcularComparacion() {
     // FREELANCER - Para igualar ingreso neto
     const salarioDeseadoFreelancer = salarioNeto;
     const gastosMensuales = 100000;
-    const monotributo = 13924; // Categoría B por defecto
+    const monotributo = 0; // sin monotributo por defecto
     const vacaciones = salarioDeseadoFreelancer / 12;
     const totalMensualFreelancer = salarioDeseadoFreelancer + gastosMensuales + monotributo + vacaciones;
     const totalAnualFreelancer = totalMensualFreelancer * 12;

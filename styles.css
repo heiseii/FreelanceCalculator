@@ -9,19 +9,19 @@
 
 :root {
     /* Colores principales */
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
-    --secondary: #8b5cf6;
+    --primary: #318eb3;
+    --primary-dark: #26558a;
+    --secondary: #3d5ab8;
     --accent: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
     --success: #10b981;
     
     /* Colores de fondo - Modo Claro */
-    --bg-primary: #f8fafc;
+    --bg-primary: #f8fafcd0;
     --bg-secondary: #ffffff;
-    --bg-tertiary: #f1f5f9;
-    --bg-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-tertiary: #cfd4dac5;
+    --bg-hero: linear-gradient(135deg, #3799aa 0%, #3d5fbd 100%);
     
     /* Colores de texto - Modo Claro */
     --text-primary: #1e293b;
@@ -29,7 +29,7 @@
     --text-muted: #94a3b8;
     
     /* Bordes y sombras */
-    --border-color: #e2e8f0;
+    --border-color: #96aac4;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -76,7 +76,7 @@ body.dark-mode {
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
     --bg-tertiary: #334155;
-    --bg-hero: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
+    --bg-hero: linear-gradient(135deg, #3799aa 0%, #3d5fbd 100%);
     
     /* Colores de texto - Modo Oscuro */
     --text-primary: #f1f5f9;
@@ -928,4 +928,30 @@ a:hover {
         font-size: var(--font-size-2xl);
     }
 }
+/*Check box de vacaciones
+*/
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    cursor: pointer;
+    font-weight: 600;
+}
 
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.checkbox-label span {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.checkbox-label span i {
+    color: var(--primary);
+}

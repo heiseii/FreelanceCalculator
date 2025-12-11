@@ -133,9 +133,9 @@
                                     Categoría de Monotributo 2025
                                 </label>
                                 <select id="monotributo" required>
-                                    <option value="0">No poseo monotributo</option>
+                                    <option value="0" >No poseo monotributo</option>
                                     <option value="9837">Categoría A - $9,837/mes (hasta $6.45M/año)</option>
-                                    <option value="13924" selected>Categoría B - $13,924/mes (hasta $9.45M/año)</option>
+                                    <option value="13924" >Categoría B - $13,924/mes (hasta $9.45M/año)</option>
                                     <option value="19454">Categoría C - $19,454/mes (hasta $13.25M/año)</option>
                                     <option value="25789">Categoría D - $25,789/mes (hasta $16.45M/año)</option>
                                     <option value="36103">Categoría E - $36,103/mes (hasta $19.35M/año)</option>
@@ -146,6 +146,17 @@
                                 <small>Elegí según tus ingresos anuales esperados</small>
                             </div>
                         
+                        <!-- Incluir Vacaciones -->
+                            <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="incluirVacaciones" checked>
+                                <span>
+                                    <i class="fas fa-umbrella-beach"></i>
+                                    Incluir vacaciones en el cálculo
+                                </span>
+                            </label>
+                            <small>Desmarcá si trabajás todo el año sin pausas o en negro</small>
+                        </div>
                             
                             <!-- Dólar Blue -->
                             <div class="form-group">
@@ -221,7 +232,7 @@
                 <div class="results-grid">
                     <div class="result-card">
                         <i class="fas fa-clock"></i>
-                        <p class="result-label">Tarifa por Hora</p>
+                        <p class="result-label">Tarifa a cobrar por Hora</p>
                         <p class="result-value" id="tarifaHoraPesos"></p>
                         <p class="result-secondary" id="tarifaHoraDolares"></p>
                     </div>

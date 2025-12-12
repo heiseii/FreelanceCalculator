@@ -25,7 +25,7 @@
     
     /* Colores de texto - Modo Claro */
     --text-primary: #1e293b;
-    --text-secondary: #ffffff;
+    --text-secondary: #050505;
     --text-muted: #94a3b8;
     
     /* Bordes y sombras */
@@ -81,7 +81,7 @@ body.dark-mode {
     /* Colores de texto - Modo Oscuro */
     --text-primary: #f1f5f9;
     --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
+    --text-muted: #b2b9c4;
     
     /* Bordes y sombras */
     --border-color: #334155;

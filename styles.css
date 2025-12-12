@@ -960,32 +960,6 @@ a:hover {
    BANNERS PUBLICITARIOS
    ======================================== */
 
-.ad-container {
-    background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-md);
-    margin: var(--spacing-lg) auto;
-    max-width: 1200px;
-    text-align: center;
-    position: relative;
-}
-
-.ad-label {
-    font-size: var(--font-size-xs);
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: var(--spacing-sm);
-}
-
-/* Banner superior - más discreto */
-.ad-top {
-    margin-top: 0;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
-}
 
 /* Banner inferior - antes del footer */
 .ad-bottom {

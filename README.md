@@ -72,4 +72,4 @@ FreelanceCalculator/
 ## 👤 Autor
 
 **Lucca** — Desarrollador web · Estudiante UTN TUPaD  
-[GitHub](https://github.com/heiseii) · [Ver demo](https://freelance-calculator-seven.vercel.app)
+[GitHub](https://github.com/heiseii) · [Ver demo](https://calculadora-freelancer-arg.vercel.app/)

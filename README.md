@@ -2,7 +2,7 @@
 
 > Calculadora web pensada para **freelancers argentinos** que necesitan calcular sus tarifas y honorarios de forma rápida y sencilla.
 
-🌐 **Demo en vivo:** [freelance-calculator-seven.vercel.app](https://freelance-calculator-seven.vercel.app)
+🌐 **Demo en vivo:** [calculadora-freelancer-arg.vercel.app](https://calculadora-freelancer-arg.vercel.app/)
 
 ---
 

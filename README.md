@@ -1,1 +1,0 @@
-My Freelance Calculator Project :)
